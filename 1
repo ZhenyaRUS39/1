@@ -1,0 +1,39 @@
+Уровень: ОШИБКА
+Эта ошибка возникла в кастомной интеграции.
+Logger: custom_components.localtuya.config_flow
+Source: custom_components/localtuya/pytuya/__init__.py:247
+Integration: LocalTuya integration (documentation, issues)
+First occurred: 09:43:55 (2 occurrences)
+Last logged: 09:44:06
+
+Unexpected exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/asyncio/locks.py", line 413, in acquire
+    await fut
+asyncio.exceptions.CancelledError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.9/asyncio/tasks.py", line 492, in wait_for
+    fut.result()
+asyncio.exceptions.CancelledError
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/config/custom_components/localtuya/config_flow.py", line 283, in async_step_basic_info
+    self.dps_strings = await validate_input(self.hass, user_input)
+  File "/config/custom_components/localtuya/config_flow.py", line 196, in validate_input
+    detected_dps = await interface.detect_available_dps()
+  File "/config/custom_components/localtuya/pytuya/__init__.py", line 539, in detect_available_dps
+    data = await self.status()
+  File "/config/custom_components/localtuya/pytuya/__init__.py", line 481, in status
+    status = await self.exchange(STATUS)
+  File "/config/custom_components/localtuya/pytuya/__init__.py", line 460, in exchange
+    msg = await self.dispatcher.wait_for(seqno)
+  File "/config/custom_components/localtuya/pytuya/__init__.py", line 247, in wait_for
+    await asyncio.wait_for(self.listeners[seqno].acquire(), timeout=timeout)
+  File "/usr/local/lib/python3.9/asyncio/tasks.py", line 494, in wait_for
+    raise exceptions.TimeoutError() from exc
+asyncio.exceptions.TimeoutError
